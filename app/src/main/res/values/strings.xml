@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">BreakingBadFacts</string>
+    <string name="breaking_bad">Breaking Bad</string>
+    <string name="american_drama_series">American drama series</string>
+    <string name="breaking_bad_description">Walter White, a chemistry teacher, discovers that he has cancer and decides to get into the meth-making business to repay his medical debits. His priorities begin to change when he partners with Jesse.</string>
+    <string name="first_episode_date">First episode date:</string>
+    <string name="_20_january_2018">20 January 2008</string>
+    <string name="no_of_episodes">No. of episodes:</string>
+    <string name="list_of_episodes">62 (list of episodes)</string>
+    <string name="theme_song">Theme song:</string>
+    <string name="breaking_bad_theme">Breaking Bad Theme</string>
 </resources>
