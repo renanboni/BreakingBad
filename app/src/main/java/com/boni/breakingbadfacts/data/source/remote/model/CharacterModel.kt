@@ -1,4 +1,4 @@
-package com.boni.breakingbadfacts.data.source.remote
+package com.boni.breakingbadfacts.data.source.remote.model
 
 import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
