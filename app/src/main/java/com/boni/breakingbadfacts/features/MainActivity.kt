@@ -1,7 +1,8 @@
-package com.boni.breakingbadfacts
+package com.boni.breakingbadfacts.features
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.boni.breakingbadfacts.R
 
 class MainActivity : AppCompatActivity() {
 
