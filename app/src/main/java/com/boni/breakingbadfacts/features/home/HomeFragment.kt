@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import com.boni.breakingbadfacts.R
 import com.boni.breakingbadfacts.base.BaseFragment
 import com.boni.breakingbadfacts.base.HasViewModel
@@ -29,6 +30,17 @@ class HomeFragment : HasViewModel<HomeViewModel>, BaseFragment() {
             container,
             false
         )
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        setupView()
+    }
+
+    private fun setupView() {
+        more.setOnClickListener {
+            findNavController().navigate(R.id.action_homeFragment_to_characterFragment)
+        }
     }
 
     override fun renderState(viewState: ViewState?) {
