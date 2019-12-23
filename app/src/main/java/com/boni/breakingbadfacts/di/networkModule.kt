@@ -1,7 +1,7 @@
 package com.boni.breakingbadfacts.di
 
 import com.boni.breakingbadfacts.BuildConfig
-import com.boni.breakingbadfacts.data.source.remote.BreakingBadService
+import com.boni.breakingbadfacts.data.source.remote.services.BreakingBadService
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.dsl.module

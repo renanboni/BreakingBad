@@ -10,23 +10,24 @@ android {
     buildToolsVersion "29.0.2"
     defaultConfig {
         applicationId "com.boni.breakingbadfacts"
-        minSdkVersion 15
+        minSdkVersion 16
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
     }
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-            buildConfigField 'String', 'URL_API', '"https://www.breakingbadapi.com/api/"'
+            buildConfigField 'String', 'URL_API', '"https://breakingbadapi.com/api/"'
         }
         debug {
             versionNameSuffix "Debug"
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            buildConfigField 'String', 'URL_API', '"https://www.breakingbadapi.com/api/"'
+            buildConfigField 'String', 'URL_API', '"https://breakingbadapi.com/api/"'
         }
     }
     compileOptions {
@@ -89,6 +90,10 @@ dependencies {
 
     // Gson
     implementation 'com.google.code.gson:gson:2.8.5'
+
+    // Glide
+    implementation 'com.github.bumptech.glide:glide:4.10.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.10.0'
 
     // Testing libraries
     testImplementation "junit:junit:$jUnitVersion"
