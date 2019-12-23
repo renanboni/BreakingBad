@@ -44,7 +44,7 @@
             android:layout_marginTop="16dp"
             android:fontFamily="@font/loew_extra_bold"
             android:text="Bryan Cranston"
-            android:textColor="@android:color/black"
+            android:textColor="@android:color/white"
             android:textSize="24sp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -55,6 +55,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/loew_regular"
             android:text="Walter White"
+            android:textColor="@color/gray"
             android:textSize="18sp"
             app:layout_constraintStart_toStartOf="@+id/portrayed"
             app:layout_constraintTop_toBottomOf="@+id/portrayed" />
@@ -79,6 +80,7 @@
             android:layout_marginBottom="4dp"
             android:fontFamily="@font/loew_regular"
             android:text="August 11, 1968"
+            android:textColor="@color/gray"
             android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="@+id/portrayed"
             app:layout_constraintStart_toEndOf="@+id/portrayed" />
