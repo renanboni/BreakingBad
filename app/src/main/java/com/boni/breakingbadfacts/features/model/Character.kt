@@ -1,9 +1,11 @@
 package com.boni.breakingbadfacts.features.model
 
 import android.graphics.Color
+import android.os.Parcelable
 import androidx.annotation.StringDef
-import com.boni.breakingbadfacts.R
+import kotlinx.android.parcel.Parcelize
 
+@Parcelize
 class Character(
     val id: Long,
     val name: String,
@@ -14,10 +16,10 @@ class Character(
     val appearance: List<Int>,
     val nickname: String,
     val portrayed: String
-) {
+) : Parcelable {
     companion object {
-        private const val ALIVE = "Alive"
-        private const val DECEASED = "Deceased"
+        const val ALIVE = "Alive"
+        const val DECEASED = "Deceased"
 
         @StringDef(ALIVE, DECEASED)
         annotation class StatusType

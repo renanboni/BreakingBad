@@ -39,7 +39,7 @@ class HomeFragment : HasViewModel<HomeViewModel>, BaseFragment() {
 
     private fun setupView() {
         more.setOnClickListener {
-            findNavController().navigate(R.id.action_homeFragment_to_characterFragment)
+            findNavController().navigate(R.id.action_homeFragment_to_charactersFragment)
         }
     }
 
@@ -49,7 +49,10 @@ class HomeFragment : HasViewModel<HomeViewModel>, BaseFragment() {
         when (viewState) {
             is HomeViewModel.HomeViewState.CharactersState -> {
                 characters.addItemDecoration(MarginItemDecoration(resources.getDimension(R.dimen.default_padding).toInt()))
-                characters.adapter = HomeAdapter(viewState.characterList)
+                characters.adapter = HomeAdapter(viewState.characterList) {
+                    val action = HomeFragmentDirections.actionHomeFragmentToCharacterFragment(it)
+                    findNavController().navigate(action)
+                }
             }
         }
     }

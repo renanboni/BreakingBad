@@ -6,4 +6,5 @@
     <color name="green">#528f5a</color>
     <color name="background_color">#11141b</color>
     <color name="gray">#b4b4b4</color>
+    <color name="light_gray">#fafaf7</color>
 </resources>

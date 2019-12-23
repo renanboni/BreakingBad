@@ -7,13 +7,20 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
 class BreakingBadRepositoryImpl(private val service: BreakingBadService) : BreakingBadRepository {
+
+    private var allCharacters = listOf<CharacterModel>()
+
     override suspend fun getAllCharacters(): Result<List<CharacterModel>> {
-        return withContext(Dispatchers.IO) {
-            try {
-                val allCharacters = service.getAllCharacters()
-                Result.Success(allCharacters)
-            } catch (e: Throwable) {
-                Result.Error(e)
+        return if (allCharacters.isNotEmpty()) {
+            Result.Success(allCharacters)
+        } else {
+            withContext(Dispatchers.IO) {
+                try {
+                    allCharacters = service.getAllCharacters()
+                    Result.Success(allCharacters)
+                } catch (e: Throwable) {
+                    Result.Error(e)
+                }
             }
         }
     }

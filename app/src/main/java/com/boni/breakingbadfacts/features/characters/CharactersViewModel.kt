@@ -10,11 +10,11 @@ import com.boni.breakingbadfacts.data.BreakingBadRepository
 import com.boni.breakingbadfacts.features.model.Character
 import com.boni.breakingbadfacts.utils.toCharacters
 
-class CharacterViewModel(private val repository: BreakingBadRepository) : BaseViewModel() {
+class CharactersViewModel(private val repository: BreakingBadRepository) : BaseViewModel() {
 
     private val charactersState = intoMediator<CharactersViewState.CharactersState>()
 
-    @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
+    @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
     fun doGetAllCharacters() {
         load {
             repository.getAllCharacters()

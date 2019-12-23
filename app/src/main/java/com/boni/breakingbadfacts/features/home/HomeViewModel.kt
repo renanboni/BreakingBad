@@ -14,7 +14,7 @@ class HomeViewModel(private val repository: BreakingBadRepository) : BaseViewMod
 
     private val charactersState = intoMediator<HomeViewState.CharactersState>()
 
-    @OnLifecycleEvent(Lifecycle.Event.ON_CREATE)
+    @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
     fun doGetAllCharacters() {
         load {
             repository.getAllCharacters()

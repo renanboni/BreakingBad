@@ -1,6 +1,5 @@
 package com.boni.breakingbadfacts.features.characters
 
-import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,8 +10,11 @@ import com.boni.breakingbadfacts.R
 import com.boni.breakingbadfacts.features.model.Character
 import com.bumptech.glide.Glide
 
-class CharacterAdapter(private val characterList: List<Character>) :
-    RecyclerView.Adapter<CharacterAdapter.CharacterViewHolder>() {
+class CharactersAdapter(
+    private val characterList: List<Character>,
+    private val listener: (Character) -> Unit
+) :
+    RecyclerView.Adapter<CharactersAdapter.CharacterViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CharacterViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(
@@ -30,7 +32,7 @@ class CharacterAdapter(private val characterList: List<Character>) :
         holder.bind(characterList[position])
     }
 
-    class CharacterViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
+    inner class CharacterViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
 
         private val characterPicture by lazy { view.findViewById<ImageView>(R.id.picture) }
         private val characterName by lazy { view.findViewById<TextView>(R.id.name) }
@@ -44,9 +46,12 @@ class CharacterAdapter(private val characterList: List<Character>) :
 
             characterName.text = character.name
             characterStatus.text = character.status
-            val color = Character.getStatusColor(character.status)
-            characterStatus.setTextColor(color)
+            characterStatus.setTextColor(Character.getStatusColor(character.status))
             characterOcupation.text = character.occupation.joinToString(",")
+
+            view.setOnClickListener {
+                listener(character)
+            }
         }
     }
 }

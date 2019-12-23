@@ -9,7 +9,10 @@ import com.boni.breakingbadfacts.R
 import com.boni.breakingbadfacts.features.model.Character
 import com.bumptech.glide.Glide
 
-class HomeAdapter(private val characterList: List<Character>) :
+class HomeAdapter(
+    private val characterList: List<Character>,
+    private val listener: (Character) -> Unit
+) :
     RecyclerView.Adapter<HomeAdapter.HomeViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeViewHolder {
@@ -28,7 +31,7 @@ class HomeAdapter(private val characterList: List<Character>) :
         holder.bind(characterList[position])
     }
 
-    class HomeViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
+    inner class HomeViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
 
         private val characterImage by lazy { view.findViewById<ImageView>(R.id.img) }
 
@@ -36,6 +39,10 @@ class HomeAdapter(private val characterList: List<Character>) :
             Glide.with(view)
                 .load(character.img)
                 .into(characterImage)
+
+            view.setOnClickListener {
+                listener(character)
+            }
         }
     }
 }

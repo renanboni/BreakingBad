@@ -18,11 +18,39 @@
             app:exitAnim="@anim/fragment_open_exit"
             app:popEnterAnim="@anim/fragment_close_enter"
             app:popExitAnim="@anim/fragment_close_exit" />
+
+        <action
+            android:id="@+id/action_homeFragment_to_charactersFragment"
+            app:destination="@id/charactersFragment"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_open_exit"
+            app:popEnterAnim="@anim/fragment_close_enter"
+            app:popExitAnim="@anim/fragment_close_exit" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/charactersFragment"
+        android:name="com.boni.breakingbadfacts.features.characters.CharactersFragment"
+        android:label="CharactersFragment"
+        tools:layout="@layout/fragment_characters">
+
+        <action
+            android:id="@+id/action_charactersFragment_to_characterFragment"
+            app:destination="@id/characterFragment"
+            app:enterAnim="@anim/fragment_open_enter"
+            app:exitAnim="@anim/fragment_open_exit"
+            app:popEnterAnim="@anim/fragment_close_enter"
+            app:popExitAnim="@anim/fragment_close_exit" />
     </fragment>
 
     <fragment
         android:id="@+id/characterFragment"
-        android:name="com.boni.breakingbadfacts.features.characters.CharacterFragment"
+        android:name="com.boni.breakingbadfacts.features.character.CharacterFragment"
         android:label="CharacterFragment"
-        tools:layout="@layout/fragment_characters" />
+        tools:layout="@layout/fragment_character">
+
+        <argument
+            android:name="character"
+            app:argType="com.boni.breakingbadfacts.features.model.Character" />
+    </fragment>
 </navigation>
