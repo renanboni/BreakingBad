@@ -8,6 +8,7 @@ import com.boni.breakingbadfacts.R
 import com.boni.breakingbadfacts.base.BaseFragment
 import com.boni.breakingbadfacts.base.HasViewModel
 import com.boni.breakingbadfacts.base.ViewState
+import com.boni.breakingbadfacts.utils.MarginItemDecoration
 import kotlinx.android.synthetic.main.fragment_home.*
 import org.koin.android.viewmodel.ext.android.viewModel
 
@@ -35,6 +36,7 @@ class HomeFragment : HasViewModel<HomeViewModel>, BaseFragment() {
 
         when (viewState) {
             is HomeViewModel.HomeViewState.CharactersState -> {
+                characters.addItemDecoration(MarginItemDecoration(resources.getDimension(R.dimen.default_padding).toInt()))
                 characters.adapter = HomeAdapter(viewState.characterList)
             }
         }
