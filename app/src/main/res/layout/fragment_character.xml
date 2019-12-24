@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -43,22 +44,22 @@
             android:layout_marginLeft="36dp"
             android:layout_marginTop="16dp"
             android:fontFamily="@font/loew_extra_bold"
-            android:text="Bryan Cranston"
             android:textColor="@android:color/white"
             android:textSize="24sp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Bryan Cranston" />
 
         <TextView
             android:id="@+id/nickname"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/loew_regular"
-            android:text="Walter White"
             android:textColor="@color/gray"
             android:textSize="18sp"
             app:layout_constraintStart_toStartOf="@+id/portrayed"
-            app:layout_constraintTop_toBottomOf="@+id/portrayed" />
+            app:layout_constraintTop_toBottomOf="@+id/portrayed"
+            tools:text="Walter White" />
 
         <TextView
             android:id="@+id/quote"
@@ -67,9 +68,10 @@
             android:background="@color/light_gray"
             android:fontFamily="@font/loew_regular"
             android:padding="24dp"
-            android:text="I am not in danger, Skyler. I am the danger!"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            tools:text="I am not in danger, Skyler. I am the danger!" />
 
         <TextView
             android:id="@+id/birthday"
@@ -79,10 +81,10 @@
             android:layout_marginLeft="16dp"
             android:layout_marginBottom="4dp"
             android:fontFamily="@font/loew_regular"
-            android:text="August 11, 1968"
             android:textColor="@color/gray"
             android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="@+id/portrayed"
-            app:layout_constraintStart_toEndOf="@+id/portrayed" />
+            app:layout_constraintStart_toEndOf="@+id/portrayed"
+            tools:text="August 11, 1968" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

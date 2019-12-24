@@ -41,6 +41,9 @@ class HomeFragment : HasViewModel<HomeViewModel>, BaseFragment() {
         more.setOnClickListener {
             findNavController().navigate(R.id.action_homeFragment_to_charactersFragment)
         }
+        episodes.setOnClickListener {
+            findNavController().navigate(R.id.action_homeFragment_to_episodesFragment)
+        }
     }
 
     override fun renderState(viewState: ViewState?) {

@@ -26,6 +26,9 @@
             app:exitAnim="@anim/fragment_open_exit"
             app:popEnterAnim="@anim/fragment_close_enter"
             app:popExitAnim="@anim/fragment_close_exit" />
+        <action
+            android:id="@+id/action_homeFragment_to_episodesFragment"
+            app:destination="@id/episodesFragment" />
     </fragment>
 
     <fragment
@@ -53,4 +56,9 @@
             android:name="character"
             app:argType="com.boni.breakingbadfacts.features.model.Character" />
     </fragment>
+
+    <fragment
+        android:id="@+id/episodesFragment"
+        android:name="com.boni.breakingbadfacts.features.episodes.EpisodesFragment"
+        android:label="EpisodesFragment" />
 </navigation>
