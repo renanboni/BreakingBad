@@ -139,7 +139,7 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/characters"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="96dp"
         android:layout_margin="16dp"
         android:orientation="horizontal"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
@@ -159,4 +159,17 @@
         android:textColor="@color/green"
         app:layout_constraintBottom_toTopOf="@+id/characters"
         app:layout_constraintEnd_toEndOf="parent" />
+
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:id="@+id/shimmer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <include layout="@layout/home_image_list_placeholder" />
+    </com.facebook.shimmer.ShimmerFrameLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

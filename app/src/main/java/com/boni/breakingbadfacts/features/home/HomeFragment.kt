@@ -8,8 +8,10 @@ import androidx.navigation.fragment.findNavController
 import com.boni.breakingbadfacts.R
 import com.boni.breakingbadfacts.base.BaseFragment
 import com.boni.breakingbadfacts.base.HasViewModel
+import com.boni.breakingbadfacts.base.LoadingState
 import com.boni.breakingbadfacts.base.ViewState
 import com.boni.breakingbadfacts.utils.MarginItemDecoration
+import com.boni.breakingbadfacts.utils.gone
 import kotlinx.android.synthetic.main.fragment_home.*
 import org.koin.android.viewmodel.ext.android.viewModel
 
@@ -50,13 +52,18 @@ class HomeFragment : HasViewModel<HomeViewModel>, BaseFragment() {
         super.renderState(viewState)
 
         when (viewState) {
-            is HomeViewModel.HomeViewState.CharactersState -> {
-                characters.addItemDecoration(MarginItemDecoration(resources.getDimension(R.dimen.default_padding).toInt()))
-                characters.adapter = HomeAdapter(viewState.characterList) {
-                    val action = HomeFragmentDirections.actionHomeFragmentToCharacterFragment(it)
-                    findNavController().navigate(action)
-                }
-            }
+            is HomeViewModel.HomeViewState.CharactersState -> renderCharacters(viewState)
+            is LoadingState.Show -> shimmer.startShimmerAnimation()
+            is LoadingState.Hide -> shimmer.stopShimmerAnimation()
         }
+    }
+
+    private fun renderCharacters(viewState: HomeViewModel.HomeViewState.CharactersState) {
+        characters.addItemDecoration(MarginItemDecoration(resources.getDimension(R.dimen.default_padding).toInt()))
+        characters.adapter = HomeAdapter(viewState.characterList) {
+            val action = HomeFragmentDirections.actionHomeFragmentToCharacterFragment(it)
+            findNavController().navigate(action)
+        }
+        shimmer.gone()
     }
 }

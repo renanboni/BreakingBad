@@ -4,18 +4,22 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import com.boni.breakingbadfacts.R
 import com.boni.breakingbadfacts.base.BaseFragment
 import com.boni.breakingbadfacts.base.HasViewModel
+import com.boni.breakingbadfacts.base.LoadingState
 import com.boni.breakingbadfacts.base.ViewState
-import com.boni.breakingbadfacts.features.characters.CharactersViewModel
 import com.boni.breakingbadfacts.ui.VerticalStepper
 import com.boni.breakingbadfacts.utils.LineItemDecoration
+import com.boni.breakingbadfacts.utils.gone
 import kotlinx.android.synthetic.main.fragment_episodes.*
+import kotlinx.android.synthetic.main.fragment_episodes.episodes
+import kotlinx.android.synthetic.main.fragment_episodes.shimmer
 import org.koin.android.viewmodel.ext.android.viewModel
 
-class EpisodesFragment : HasViewModel<EpisodesViewModel>, BaseFragment(),
+class EpisodesFragment :
+    HasViewModel<EpisodesViewModel>,
+    BaseFragment(),
     VerticalStepper.OnVerticalStepperListener {
 
     private val episodesViewModel by viewModel<EpisodesViewModel>()
@@ -46,19 +50,24 @@ class EpisodesFragment : HasViewModel<EpisodesViewModel>, BaseFragment(),
         super.renderState(viewState)
 
         when (viewState) {
-            is EpisodesViewModel.EpisodesViewState.Episodes -> {
-                episodes.adapter = EpisodesAdapter(viewState.episodes)
-                episodes.addItemDecoration(
-                    LineItemDecoration(
-                        requireContext(),
-                        R.color.gray,
-                        alpha = 0.2,
-                        skipTopLine = true,
-                        skipLastLine = true
-                    )
-                )
-            }
+            is EpisodesViewModel.EpisodesViewState.Episodes -> renderEpisodes(viewState)
+            is LoadingState.Show -> shimmer.startShimmerAnimation()
+            is LoadingState.Hide -> shimmer.stopShimmerAnimation()
         }
+    }
+
+    private fun renderEpisodes(viewState: EpisodesViewModel.EpisodesViewState.Episodes) {
+        episodes.adapter = EpisodesAdapter(viewState.episodes)
+        episodes.addItemDecoration(
+            LineItemDecoration(
+                requireContext(),
+                R.color.gray,
+                alpha = 0.2,
+                skipTopLine = true,
+                skipLastLine = true
+            )
+        )
+        shimmer.gone()
     }
 
     private fun setupView() {
