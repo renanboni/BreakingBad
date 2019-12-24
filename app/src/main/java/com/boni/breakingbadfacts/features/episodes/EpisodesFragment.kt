@@ -11,6 +11,7 @@ import com.boni.breakingbadfacts.base.HasViewModel
 import com.boni.breakingbadfacts.base.ViewState
 import com.boni.breakingbadfacts.features.characters.CharactersViewModel
 import com.boni.breakingbadfacts.ui.VerticalStepper
+import com.boni.breakingbadfacts.utils.LineItemDecoration
 import kotlinx.android.synthetic.main.fragment_episodes.*
 import org.koin.android.viewmodel.ext.android.viewModel
 
@@ -44,9 +45,18 @@ class EpisodesFragment : HasViewModel<EpisodesViewModel>, BaseFragment(),
     override fun renderState(viewState: ViewState?) {
         super.renderState(viewState)
 
-        when(viewState) {
+        when (viewState) {
             is EpisodesViewModel.EpisodesViewState.Episodes -> {
                 episodes.adapter = EpisodesAdapter(viewState.episodes)
+                episodes.addItemDecoration(
+                    LineItemDecoration(
+                        requireContext(),
+                        R.color.gray,
+                        alpha = 0.2,
+                        skipTopLine = true,
+                        skipLastLine = true
+                    )
+                )
             }
         }
     }

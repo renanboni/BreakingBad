@@ -5,9 +5,8 @@ import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.FrameLayout
-import androidx.core.content.ContextCompat
-import androidx.core.graphics.drawable.DrawableCompat
 import com.boni.breakingbadfacts.R
+import com.boni.breakingbadfacts.utils.setBackgroundDrawableColor
 
 class VerticalSeparator @JvmOverloads constructor(
     context: Context,
@@ -25,7 +24,6 @@ class VerticalSeparator @JvmOverloads constructor(
     }
 
     fun setColor(color: Int) {
-        val backgroundDrawable = DrawableCompat.wrap(view.background).mutate()
-        DrawableCompat.setTint(backgroundDrawable, ContextCompat.getColor(context, color))
+        view.setBackgroundDrawableColor(color)
     }
 }
