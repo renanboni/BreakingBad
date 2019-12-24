@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -20,19 +21,30 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_marginTop="200dp"
-        android:background="#f3d36e"
+        android:background="@drawable/rounded_background_yellow"
         android:padding="36dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="@+id/imageView3">
 
         <com.boni.breakingbadfacts.ui.VerticalStepper
             android:id="@+id/verticalStepper"
-            app:enabledColor="@color/green"
-            app:disabledColor="@android:color/black"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            app:disabledColor="@android:color/black"
+            app:enabledColor="@color/green"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:quantity="5" />
     </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/episodes"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/linearLayout"
+        app:layout_constraintTop_toBottomOf="@+id/imageView3"
+        tools:listitem="@layout/episode_item_list" />
 </androidx.constraintlayout.widget.ConstraintLayout>

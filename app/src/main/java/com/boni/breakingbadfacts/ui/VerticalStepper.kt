@@ -26,6 +26,8 @@ class VerticalStepper @JvmOverloads constructor(
     private var enabledColor = 0
     private var disabledColor = 0
 
+    var listener: OnVerticalStepperListener? = null
+
     init {
         orientation = VERTICAL
         gravity = Gravity.CENTER
@@ -50,7 +52,7 @@ class VerticalStepper @JvmOverloads constructor(
             children.forEach { child ->
                 if (child is CircleIndicator) {
                     if (x >= child.left && x <= child.right && y >= child.top && y <= child.bottom) {
-                        adjustIndicators(child)
+                        adjustIndicators(circleIndicators.indexOf(child))
                         return@setOnTouchListener false
                     }
                 }
@@ -60,9 +62,7 @@ class VerticalStepper @JvmOverloads constructor(
         }
     }
 
-    private fun adjustIndicators(indicator: CircleIndicator) {
-        val index = circleIndicators.indexOf(indicator)
-
+    fun adjustIndicators(index: Int) {
         for (i in 0..index) {
             circleIndicators[i].setColor(R.color.red)
 
@@ -80,6 +80,8 @@ class VerticalStepper @JvmOverloads constructor(
                 }
             }
         }
+
+        listener?.onStepperClicked(index)
     }
 
     private fun setupIndicators() {
@@ -104,5 +106,9 @@ class VerticalStepper @JvmOverloads constructor(
                 addView(separator)
             }
         }
+    }
+
+    interface OnVerticalStepperListener {
+        fun onStepperClicked(index: Int)
     }
 }
