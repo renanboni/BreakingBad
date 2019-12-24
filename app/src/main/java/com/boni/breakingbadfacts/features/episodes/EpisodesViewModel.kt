@@ -16,7 +16,7 @@ class EpisodesViewModel(private val repository: BreakingBadRepository) : BaseVie
         load {
             repository.getEpisodes()
                 .onSuccess {
-                    val episodes = it.toEpisodes().filter { it.episode.toInt() == season }
+                    val episodes = it.toEpisodes().filter { it.season.toInt() == season }
                     episodesState.postValue(EpisodesViewState.Episodes(episodes))
                 }
                 .onError { }

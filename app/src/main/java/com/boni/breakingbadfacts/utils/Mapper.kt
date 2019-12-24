@@ -42,11 +42,11 @@ fun EpisodeModel.toEpisode(): Episode {
     return Episode(
         id = id ?: 0,
         title = title.orEmpty(),
-        series = season.orEmpty(),
+        series = season.orEmpty().trim(),
         airDate = airDate.orEmpty(),
         characters = characters.orEmpty(),
         episode = episode.orEmpty(),
-        season = season.orEmpty()
+        season = season.orEmpty().trim()
     )
 }
 

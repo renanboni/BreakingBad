@@ -33,7 +33,7 @@ class EpisodesAdapter(private val episodes: List<Episode>) :
         private val title by lazy { view.findViewById<TextView>(R.id.title) }
 
         fun bind(episode: Episode) {
-            season.text = episode.season
+            season.text = episode.episode
             title.text = episode.title
         }
     }
