@@ -61,7 +61,25 @@ class VerticalStepper @JvmOverloads constructor(
     }
 
     private fun adjustIndicators(indicator: CircleIndicator) {
+        val index = circleIndicators.indexOf(indicator)
 
+        for (i in 0..index) {
+            circleIndicators[i].setColor(R.color.red)
+
+            if (i - 1 >= 0) {
+                verticalSeparators[i - 1].setColor(R.color.red)
+            }
+        }
+
+        for (i in index + 1 until circleIndicators.count()) {
+            circleIndicators[i].setColor(R.color.disabled_black)
+
+            if (i <= verticalSeparators.count()) {
+                if (i - 1 >= 0) {
+                    verticalSeparators[i - 1].setColor(R.color.disabled_black)
+                }
+            }
+        }
     }
 
     private fun setupIndicators() {

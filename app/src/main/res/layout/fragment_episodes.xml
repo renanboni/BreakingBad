@@ -27,6 +27,8 @@
 
         <com.boni.breakingbadfacts.ui.VerticalStepper
             android:id="@+id/verticalStepper"
+            app:enabledColor="@color/green"
+            app:disabledColor="@android:color/black"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintStart_toStartOf="parent"
