@@ -2,6 +2,7 @@ package com.boni.breakingbadfacts.data
 
 import com.boni.breakingbadfacts.base.Result
 import com.boni.breakingbadfacts.data.source.remote.model.CharacterModel
+import com.boni.breakingbadfacts.data.source.remote.model.QuoteModel
 import com.boni.breakingbadfacts.data.source.remote.services.BreakingBadService
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
@@ -9,6 +10,7 @@ import kotlinx.coroutines.withContext
 class BreakingBadRepositoryImpl(private val service: BreakingBadService) : BreakingBadRepository {
 
     private var allCharacters = listOf<CharacterModel>()
+    private var quotes = listOf<QuoteModel>()
 
     override suspend fun getAllCharacters(): Result<List<CharacterModel>> {
         return if (allCharacters.isNotEmpty()) {
@@ -18,6 +20,21 @@ class BreakingBadRepositoryImpl(private val service: BreakingBadService) : Break
                 try {
                     allCharacters = service.getAllCharacters()
                     Result.Success(allCharacters)
+                } catch (e: Throwable) {
+                    Result.Error(e)
+                }
+            }
+        }
+    }
+
+    override suspend fun getQuotes(): Result<List<QuoteModel>> {
+        return if (quotes.isNotEmpty()) {
+            Result.Success(quotes)
+        } else {
+            withContext(Dispatchers.IO) {
+                try {
+                    quotes = service.getQuotes()
+                    Result.Success(quotes)
                 } catch (e: Throwable) {
                     Result.Error(e)
                 }

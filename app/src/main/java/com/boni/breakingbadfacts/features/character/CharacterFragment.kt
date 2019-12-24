@@ -8,6 +8,7 @@ import androidx.navigation.fragment.navArgs
 import com.boni.breakingbadfacts.R
 import com.boni.breakingbadfacts.base.BaseFragment
 import com.boni.breakingbadfacts.base.HasViewModel
+import com.boni.breakingbadfacts.base.ViewState
 import com.boni.breakingbadfacts.features.model.Character
 import com.boni.breakingbadfacts.utils.setVisible
 import com.bumptech.glide.Glide
@@ -37,7 +38,16 @@ class CharacterFragment : HasViewModel<CharacterViewModel>, BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        viewModel.getQuotes(args.character.name)
         setupViews()
+    }
+
+    override fun renderState(viewState: ViewState?) {
+        super.renderState(viewState)
+
+        when (viewState) {
+            is CharacterViewModel.CharacterState -> setQuoteText()
+        }
     }
 
     private fun setupViews() {
@@ -49,5 +59,13 @@ class CharacterFragment : HasViewModel<CharacterViewModel>, BaseFragment() {
         Glide.with(this)
             .load(args.character.img)
             .into(picture)
+
+        quote.setOnClickListener { setQuoteText() }
+    }
+
+    private fun setQuoteText() {
+        val qt = viewModel.getNextQuote()
+        quote.setVisible(qt.isNotEmpty())
+        quote.text = qt
     }
 }

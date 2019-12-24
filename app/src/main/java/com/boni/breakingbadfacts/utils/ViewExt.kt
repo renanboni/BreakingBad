@@ -9,3 +9,11 @@ fun View.setVisible(shouldShow: Boolean) {
         View.GONE
     }
 }
+
+fun View.hide() {
+    visibility = View.INVISIBLE
+}
+
+fun View.gone() {
+    visibility = View.GONE
+}
