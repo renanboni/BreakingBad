@@ -5,6 +5,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.boni.breakingbadfacts.R
 import com.boni.breakingbadfacts.base.BaseFragment
@@ -85,6 +87,11 @@ class CharacterFragment : HasViewModel<CharacterViewModel>, BaseFragment() {
             chip.text = "Season $it"
             chip.isClickable = true
             chip.isCheckable = false
+            chip.setOnClickListener { _ ->
+                val action =
+                    CharacterFragmentDirections.actionCharacterFragmentToEpisodesFragment(it - 1)
+                findNavController().navigate(action)
+            }
             chips.addView(chip)
         }
 

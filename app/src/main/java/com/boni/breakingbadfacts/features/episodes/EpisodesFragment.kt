@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.navArgs
 import com.boni.breakingbadfacts.R
 import com.boni.breakingbadfacts.base.BaseFragment
 import com.boni.breakingbadfacts.base.HasViewModel
@@ -27,6 +28,8 @@ class EpisodesFragment :
     override val viewModel: EpisodesViewModel
         get() = episodesViewModel
 
+    private val args: EpisodesFragmentArgs by navArgs()
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -42,8 +45,8 @@ class EpisodesFragment :
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupView()
-        viewModel.getEpisodes(1)
-        verticalStepper.adjustIndicators(0)
+        viewModel.getEpisodes(args.season)
+        verticalStepper.adjustIndicators(args.season)
     }
 
     override fun renderState(viewState: ViewState?) {

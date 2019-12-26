@@ -59,11 +59,20 @@
         <argument
             android:name="character"
             app:argType="com.boni.breakingbadfacts.features.model.Character" />
+        <action
+            android:id="@+id/action_characterFragment_to_episodesFragment"
+            app:destination="@id/episodesFragment" />
     </fragment>
 
     <fragment
         android:id="@+id/episodesFragment"
-        tools:layout="@layout/fragment_episodes"
         android:name="com.boni.breakingbadfacts.features.episodes.EpisodesFragment"
-        android:label="EpisodesFragment" />
+        android:label="EpisodesFragment"
+        tools:layout="@layout/fragment_episodes">
+
+        <argument
+            android:name="season"
+            android:defaultValue="0"
+            app:argType="integer" />
+    </fragment>
 </navigation>
