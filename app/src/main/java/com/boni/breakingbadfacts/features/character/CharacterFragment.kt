@@ -1,5 +1,6 @@
 package com.boni.breakingbadfacts.features.character
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -13,6 +14,7 @@ import com.boni.breakingbadfacts.features.model.Character
 import com.boni.breakingbadfacts.utils.LineItemDecoration
 import com.boni.breakingbadfacts.utils.setVisible
 import com.bumptech.glide.Glide
+import com.google.android.material.chip.Chip
 import kotlinx.android.synthetic.main.fragment_character.*
 import org.koin.android.viewmodel.ext.android.viewModel
 
@@ -65,6 +67,7 @@ class CharacterFragment : HasViewModel<CharacterViewModel>, BaseFragment() {
         )
     }
 
+    @SuppressLint("SetTextI18n")
     private fun setupViews() {
         portrayed.text = args.character.portrayed
         nickname.text = args.character.nickname
@@ -76,6 +79,16 @@ class CharacterFragment : HasViewModel<CharacterViewModel>, BaseFragment() {
             .into(picture)
 
         quote.setOnClickListener { setQuoteText() }
+
+        args.character.appearance.forEach {
+            val chip = Chip(chips.context)
+            chip.text = "Season $it"
+            chip.isClickable = true
+            chip.isCheckable = false
+            chips.addView(chip)
+        }
+
+        chips.isSingleSelection = true
     }
 
     private fun setQuoteText() {

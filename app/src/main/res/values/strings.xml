@@ -9,4 +9,7 @@
     <string name="list_of_episodes">62 (list of episodes)</string>
     <string name="theme_song">Theme song:</string>
     <string name="breaking_bad_theme">Breaking Bad Theme</string>
+    <string name="last_words">Last words</string>
+    <string name="cause">Cause</string>
+    <string name="victim">Victim</string>
 </resources>
