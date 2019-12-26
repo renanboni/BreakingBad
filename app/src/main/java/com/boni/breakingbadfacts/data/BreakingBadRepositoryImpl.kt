@@ -2,6 +2,7 @@ package com.boni.breakingbadfacts.data
 
 import com.boni.breakingbadfacts.base.Result
 import com.boni.breakingbadfacts.data.source.remote.model.CharacterModel
+import com.boni.breakingbadfacts.data.source.remote.model.DeathModel
 import com.boni.breakingbadfacts.data.source.remote.model.EpisodeModel
 import com.boni.breakingbadfacts.data.source.remote.model.QuoteModel
 import com.boni.breakingbadfacts.data.source.remote.services.BreakingBadService
@@ -13,6 +14,7 @@ class BreakingBadRepositoryImpl(private val service: BreakingBadService) : Break
     private var allCharacters = listOf<CharacterModel>()
     private var quotes = listOf<QuoteModel>()
     private var episodes = listOf<EpisodeModel>()
+    private var deaths = listOf<DeathModel>()
 
     override suspend fun getAllCharacters(): Result<List<CharacterModel>> {
         return if (allCharacters.isNotEmpty()) {
@@ -52,6 +54,21 @@ class BreakingBadRepositoryImpl(private val service: BreakingBadService) : Break
                 try {
                     episodes = service.getEpisodes()
                     Result.Success(episodes)
+                } catch (e: Throwable) {
+                    Result.Error(e)
+                }
+            }
+        }
+    }
+
+    override suspend fun getDeaths(): Result<List<DeathModel>> {
+        return if (deaths.isNotEmpty()) {
+            Result.Success(deaths)
+        } else {
+            withContext(Dispatchers.IO) {
+                try {
+                    deaths = service.getDeaths()
+                    Result.Success(deaths)
                 } catch (e: Throwable) {
                     Result.Error(e)
                 }

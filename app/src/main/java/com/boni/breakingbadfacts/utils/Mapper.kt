@@ -1,9 +1,11 @@
 package com.boni.breakingbadfacts.utils
 
 import com.boni.breakingbadfacts.data.source.remote.model.CharacterModel
+import com.boni.breakingbadfacts.data.source.remote.model.DeathModel
 import com.boni.breakingbadfacts.data.source.remote.model.EpisodeModel
 import com.boni.breakingbadfacts.data.source.remote.model.QuoteModel
 import com.boni.breakingbadfacts.features.model.Character
+import com.boni.breakingbadfacts.features.model.Death
 import com.boni.breakingbadfacts.features.model.Episode
 import com.boni.breakingbadfacts.features.model.Quote
 
@@ -52,4 +54,21 @@ fun EpisodeModel.toEpisode(): Episode {
 
 fun List<EpisodeModel>.toEpisodes(): List<Episode> {
     return map { it.toEpisode() }
+}
+
+fun DeathModel.toDeath(): Death {
+    return Death(
+        id = id ?: 0,
+        death = death.orEmpty(),
+        cause = cause.orEmpty(),
+        responsible = responsible.orEmpty(),
+        lastWords = lastWords.orEmpty(),
+        season = season ?: 0,
+        episode = episode ?: 0,
+        numberOfDeaths = numberOfDeaths ?: 0
+    )
+}
+
+fun List<DeathModel>.toDeaths(): List<Death> {
+    return map { it.toDeath() }
 }

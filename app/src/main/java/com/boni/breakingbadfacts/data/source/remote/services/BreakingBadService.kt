@@ -1,6 +1,7 @@
 package com.boni.breakingbadfacts.data.source.remote.services
 
 import com.boni.breakingbadfacts.data.source.remote.model.CharacterModel
+import com.boni.breakingbadfacts.data.source.remote.model.DeathModel
 import com.boni.breakingbadfacts.data.source.remote.model.EpisodeModel
 import com.boni.breakingbadfacts.data.source.remote.model.QuoteModel
 import retrofit2.http.GET
@@ -16,4 +17,7 @@ interface BreakingBadService {
 
     @GET("episodes")
     suspend fun getEpisodes(): List<EpisodeModel>
+
+    @GET("deaths")
+    suspend fun getDeaths(): List<DeathModel>
 }

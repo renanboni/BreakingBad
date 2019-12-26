@@ -10,6 +10,7 @@ import com.boni.breakingbadfacts.base.BaseFragment
 import com.boni.breakingbadfacts.base.HasViewModel
 import com.boni.breakingbadfacts.base.ViewState
 import com.boni.breakingbadfacts.features.model.Character
+import com.boni.breakingbadfacts.utils.LineItemDecoration
 import com.boni.breakingbadfacts.utils.setVisible
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.fragment_character.*
@@ -46,8 +47,22 @@ class CharacterFragment : HasViewModel<CharacterViewModel>, BaseFragment() {
         super.renderState(viewState)
 
         when (viewState) {
-            is CharacterViewModel.CharacterState -> setQuoteText()
+            is CharacterViewModel.CharacterState.Quotes -> setQuoteText()
+            is CharacterViewModel.CharacterState.Deaths -> renderExecutionList(viewState)
         }
+    }
+
+    private fun renderExecutionList(viewState: CharacterViewModel.CharacterState.Deaths) {
+        executions.adapter = DeathAdapter(viewState.deaths)
+        executions.addItemDecoration(
+            LineItemDecoration(
+                requireContext(),
+                R.color.gray,
+                alpha = 0.2,
+                skipTopLine = true,
+                skipLastLine = true
+            )
+        )
     }
 
     private fun setupViews() {
