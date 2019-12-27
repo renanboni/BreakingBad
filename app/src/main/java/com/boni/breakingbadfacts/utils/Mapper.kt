@@ -65,7 +65,8 @@ fun DeathModel.toDeath(): Death {
         lastWords = lastWords.orEmpty(),
         season = season ?: 0,
         episode = episode ?: 0,
-        numberOfDeaths = numberOfDeaths ?: 0
+        numberOfDeaths = numberOfDeaths ?: 0,
+        img = ""
     )
 }
 

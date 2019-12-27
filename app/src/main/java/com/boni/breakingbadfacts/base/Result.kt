@@ -18,3 +18,11 @@ fun <T : Any> Result<T>.onError(action: (Throwable) -> Unit): Result<T> {
     }
     return this
 }
+
+fun <T: Any> Result<T>.getOrThrow(): T {
+    if (this is Result.Error) {
+        throw Throwable()
+    } else {
+        return (this as Result.Success).data
+    }
+}
