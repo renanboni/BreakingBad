@@ -10,7 +10,8 @@ import com.boni.breakingbadfacts.R
 import com.boni.breakingbadfacts.features.model.Death
 import com.bumptech.glide.Glide
 
-class DeathAdapter (private val deathList: List<Death>): RecyclerView.Adapter<DeathAdapter.DeathViewHolder>() {
+class DeathAdapter(private val deathList: List<Death>) :
+    RecyclerView.Adapter<DeathAdapter.DeathViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DeathViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(
@@ -28,7 +29,7 @@ class DeathAdapter (private val deathList: List<Death>): RecyclerView.Adapter<De
         holder.bind(deathList[position])
     }
 
-    inner class DeathViewHolder (val view: View): RecyclerView.ViewHolder(view) {
+    inner class DeathViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
 
         private val victim by lazy { view.findViewById<TextView>(R.id.victim) }
         private val cause by lazy { view.findViewById<TextView>(R.id.cause) }
@@ -40,9 +41,13 @@ class DeathAdapter (private val deathList: List<Death>): RecyclerView.Adapter<De
             cause.text = death.cause
             lastWords.text = death.lastWords
 
-            Glide.with(view)
-                .load(death.img)
-                .into(picture)
+            if (death.img.isEmpty()) {
+                picture.setImageResource(R.drawable.ic_unknown)
+            } else {
+                Glide.with(view)
+                    .load(death.img)
+                    .into(picture)
+            }
         }
     }
 }

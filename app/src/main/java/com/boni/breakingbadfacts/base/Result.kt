@@ -21,7 +21,7 @@ fun <T : Any> Result<T>.onError(action: (Throwable) -> Unit): Result<T> {
 
 fun <T: Any> Result<T>.getOrThrow(): T {
     if (this is Result.Error) {
-        throw Throwable()
+        throw Throwable(exception)
     } else {
         return (this as Result.Success).data
     }

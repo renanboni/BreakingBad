@@ -13,6 +13,9 @@ import com.boni.breakingbadfacts.base.HasViewModel
 import com.boni.breakingbadfacts.base.ViewState
 import com.boni.breakingbadfacts.features.model.Character
 import com.boni.breakingbadfacts.utils.LineItemDecoration
+import com.boni.breakingbadfacts.utils.MarginItemDecoration
+import com.boni.breakingbadfacts.utils.addMarginBetweenItems
+import com.boni.breakingbadfacts.utils.addSeparatorBetweenItems
 import com.boni.breakingbadfacts.utils.setVisible
 import com.bumptech.glide.Glide
 import com.google.android.material.chip.Chip
@@ -57,15 +60,8 @@ class CharacterFragment : HasViewModel<CharacterViewModel>, BaseFragment() {
 
     private fun renderExecutionList(viewState: CharacterViewModel.CharacterState.Deaths) {
         executions.adapter = DeathAdapter(viewState.deaths)
-        executions.addItemDecoration(
-            LineItemDecoration(
-                requireContext(),
-                R.color.gray,
-                alpha = 0.2,
-                skipTopLine = true,
-                skipLastLine = true
-            )
-        )
+        executions.addMarginBetweenItems()
+        executions.addSeparatorBetweenItems()
         executionLabel.setVisible(viewState.deaths.isNotEmpty())
     }
 

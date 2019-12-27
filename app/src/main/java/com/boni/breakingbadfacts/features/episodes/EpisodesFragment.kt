@@ -12,6 +12,7 @@ import com.boni.breakingbadfacts.base.LoadingState
 import com.boni.breakingbadfacts.base.ViewState
 import com.boni.breakingbadfacts.ui.VerticalStepper
 import com.boni.breakingbadfacts.utils.LineItemDecoration
+import com.boni.breakingbadfacts.utils.addSeparatorBetweenItems
 import com.boni.breakingbadfacts.utils.gone
 import kotlinx.android.synthetic.main.fragment_episodes.*
 import kotlinx.android.synthetic.main.fragment_episodes.episodes
@@ -61,15 +62,7 @@ class EpisodesFragment :
 
     private fun renderEpisodes(viewState: EpisodesViewModel.EpisodesViewState.Episodes) {
         episodes.adapter = EpisodesAdapter(viewState.episodes)
-        episodes.addItemDecoration(
-            LineItemDecoration(
-                requireContext(),
-                R.color.gray,
-                alpha = 0.2,
-                skipTopLine = true,
-                skipLastLine = true
-            )
-        )
+        episodes.addSeparatorBetweenItems()
         shimmer.gone()
     }
 

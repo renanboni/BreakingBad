@@ -24,7 +24,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/picture"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/picture" />
+        app:layout_constraintTop_toTopOf="@id/picture" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -57,8 +57,8 @@
             android:fontFamily="@font/loew_regular"
             android:textColor="@color/gray"
             android:textSize="18sp"
-            app:layout_constraintStart_toStartOf="@+id/portrayed"
-            app:layout_constraintTop_toBottomOf="@+id/portrayed"
+            app:layout_constraintStart_toStartOf="@id/portrayed"
+            app:layout_constraintTop_toBottomOf="@id/portrayed"
             tools:text="Walter White" />
 
         <HorizontalScrollView
@@ -71,8 +71,8 @@
             android:layout_marginEnd="36dp"
             android:layout_marginRight="36dp"
             android:scrollbars="none"
-            app:layout_constraintStart_toStartOf="@+id/nickname"
-            app:layout_constraintTop_toBottomOf="@+id/nickname">
+            app:layout_constraintStart_toStartOf="@id/nickname"
+            app:layout_constraintTop_toBottomOf="@id/nickname">
 
             <com.google.android.material.chip.ChipGroup
                 android:id="@+id/chips"
@@ -104,8 +104,8 @@
             android:fontFamily="@font/loew_regular"
             android:textColor="@color/gray"
             android:textSize="16sp"
-            app:layout_constraintBottom_toBottomOf="@+id/portrayed"
-            app:layout_constraintStart_toEndOf="@+id/portrayed"
+            app:layout_constraintBottom_toBottomOf="@id/portrayed"
+            app:layout_constraintStart_toEndOf="@id/portrayed"
             tools:text="August 11, 1968" />
 
         <TextView
@@ -117,8 +117,8 @@
             android:text="@string/executions"
             android:textColor="@android:color/white"
             android:textSize="24sp"
-            app:layout_constraintStart_toStartOf="@+id/scroll"
-            app:layout_constraintTop_toBottomOf="@+id/scroll" />
+            app:layout_constraintStart_toStartOf="@id/scroll"
+            app:layout_constraintTop_toBottomOf="@id/scroll" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/executions"
@@ -128,10 +128,10 @@
             android:layout_marginEnd="36dp"
             android:layout_marginRight="36dp"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_constraintBottom_toTopOf="@+id/quote"
+            app:layout_constraintBottom_toTopOf="@id/quote"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="@+id/executionLabel"
-            app:layout_constraintTop_toBottomOf="@+id/executionLabel"
+            app:layout_constraintStart_toStartOf="@id/executionLabel"
+            app:layout_constraintTop_toBottomOf="@id/executionLabel"
             tools:listitem="@layout/execution_item_list" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
