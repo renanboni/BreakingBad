@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 interface HasViewModel<T : BaseViewModel> {
 
@@ -36,7 +37,11 @@ interface HasViewModel<T : BaseViewModel> {
     }
 
     private fun renderErrorState(state: ErrorState) {
-
+        MaterialAlertDialogBuilder(getActivity())
+            .setTitle("Error")
+            .setMessage(state.message)
+            .setPositiveButton("Ok", null)
+            .show()
     }
 
     private fun renderLoadingState(state: LoadingState) {

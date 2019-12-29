@@ -116,7 +116,7 @@
             android:fontFamily="@font/loew_extra_bold"
             android:text="@string/executions"
             android:textColor="@android:color/white"
-            android:textSize="24sp"
+            android:textSize="18sp"
             app:layout_constraintStart_toStartOf="@id/scroll"
             app:layout_constraintTop_toBottomOf="@id/scroll" />
 

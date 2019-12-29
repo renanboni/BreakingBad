@@ -5,6 +5,7 @@ import com.boni.breakingbadfacts.base.ErrorState
 import com.boni.breakingbadfacts.base.Result
 import com.boni.breakingbadfacts.base.ViewState
 import com.boni.breakingbadfacts.base.getOrThrow
+import com.boni.breakingbadfacts.base.notifyError
 import com.boni.breakingbadfacts.base.onError
 import com.boni.breakingbadfacts.base.onSuccess
 import com.boni.breakingbadfacts.data.BreakingBadRepository
@@ -30,7 +31,7 @@ class CharacterViewModel(private val repository: BreakingBadRepository) : BaseVi
         load {
             repository.getQuotes()
                 .onSuccess { onGetQuoteSuccess(it, author) }
-                .onError { }
+                .notifyError(errorLiveData)
         }
     }
 
