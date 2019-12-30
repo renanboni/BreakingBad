@@ -16,12 +16,17 @@ class EpisodesViewModel(private val repository: BreakingBadRepository) : BaseVie
     fun getEpisodes(season: Int) {
         load {
             repository.getEpisodes()
-                .onSuccess {
-                    val episodes = it.toEpisodes().filter { it.season.toInt() == season }
-                    episodesState.postValue(EpisodesViewState.Episodes(episodes))
-                }
+                .onSuccess { onGetEpisodesSuccess(it, season) }
                 .notifyError(errorLiveData)
         }
+    }
+
+    private fun onGetEpisodesSuccess(
+        it: List<Episode>,
+        season: Int
+    ) {
+        val episodes = it.filter { it.season.toInt() == season }
+        episodesState.postValue(EpisodesViewState.Episodes(episodes))
     }
 
     sealed class EpisodesViewState : ViewState {

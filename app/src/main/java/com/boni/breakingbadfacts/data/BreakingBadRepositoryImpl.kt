@@ -1,19 +1,30 @@
 package com.boni.breakingbadfacts.data
 
 import com.boni.breakingbadfacts.base.Result
+import com.boni.breakingbadfacts.base.get
+import com.boni.breakingbadfacts.base.isSuccess
+import com.boni.breakingbadfacts.data.source.local.BreakingBadLocalDataSource
+import com.boni.breakingbadfacts.data.source.local.model.EpisodeEntity
+import com.boni.breakingbadfacts.data.source.remote.BreakingBadRemoteDataSource
 import com.boni.breakingbadfacts.data.source.remote.model.CharacterModel
 import com.boni.breakingbadfacts.data.source.remote.model.DeathModel
-import com.boni.breakingbadfacts.data.source.remote.model.EpisodeModel
 import com.boni.breakingbadfacts.data.source.remote.model.QuoteModel
 import com.boni.breakingbadfacts.data.source.remote.services.BreakingBadService
+import com.boni.breakingbadfacts.features.model.Episode
+import com.boni.breakingbadfacts.utils.toEpisodes
+import com.boni.breakingbadfacts.utils.toEpisodesEntity
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
-class BreakingBadRepositoryImpl(private val service: BreakingBadService) : BreakingBadRepository {
+class BreakingBadRepositoryImpl(
+    private val service: BreakingBadService,
+    private val local: BreakingBadLocalDataSource,
+    private val remote: BreakingBadRemoteDataSource
+) : BreakingBadRepository {
 
     private var allCharacters = listOf<CharacterModel>()
     private var quotes = listOf<QuoteModel>()
-    private var episodes = listOf<EpisodeModel>()
+    private var episodes = listOf<Episode>()
     private var deaths = listOf<DeathModel>()
 
     override suspend fun getAllCharacters(): Result<List<CharacterModel>> {
@@ -46,19 +57,40 @@ class BreakingBadRepositoryImpl(private val service: BreakingBadService) : Break
         }
     }
 
-    override suspend fun getEpisodes(): Result<List<EpisodeModel>> {
-        return if (episodes.isNotEmpty()) {
-            Result.Success(episodes)
-        } else {
-            withContext(Dispatchers.IO) {
-                try {
-                    episodes = service.getEpisodes()
-                    Result.Success(episodes)
-                } catch (e: Throwable) {
-                    Result.Error(e)
-                }
-            }
+    override suspend fun getEpisodes(): Result<List<Episode>> {
+        // try to get it locally
+        if (episodes.isNotEmpty()) {
+            return Result.Success(episodes)
         }
+
+        // try to get data locally
+        val localEpisodes = local.getEpisodes()
+
+        if (localEpisodes.isSuccess() && localEpisodes.get().isNotEmpty()) {
+            val episodes = localEpisodes.get().toEpisodes()
+            refreshCacheEpisodes(episodes)
+            return Result.Success(episodes)
+        }
+
+        // local data failed, try to get remotely
+        val remoteEpisodes = remote.getEpisodes()
+
+        if (remoteEpisodes.isSuccess()) {
+            val episodes = remoteEpisodes.get()
+            refreshCacheEpisodes(episodes.toEpisodes())
+            refreshLocalEpisodes(episodes.toEpisodesEntity())
+            return Result.Success(this.episodes)
+        }
+
+        return Result.Error(Throwable("Failed to fetch data from all available sources"))
+    }
+
+    private fun refreshCacheEpisodes(episodeList: List<Episode>) {
+        this.episodes = episodeList
+    }
+
+    private suspend fun refreshLocalEpisodes(episodeList: List<EpisodeEntity>) {
+        local.saveEpisodes(episodeList)
     }
 
     override suspend fun getDeaths(): Result<List<DeathModel>> {

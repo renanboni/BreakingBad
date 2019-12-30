@@ -2,10 +2,11 @@ package com.boni.breakingbadfacts.data.source.local.model
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
+import androidx.room.PrimaryKey
 
 @Entity(tableName = "episode")
 data class EpisodeEntity(
-    @ColumnInfo val id: Int,
+    @ColumnInfo @PrimaryKey val id: Int,
     @ColumnInfo val title: String,
     @ColumnInfo val season: String,
     @ColumnInfo val airDate: String,

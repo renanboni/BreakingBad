@@ -35,3 +35,11 @@ fun <T : Any> Result<T>.getOrThrow(): T {
         return (this as Result.Success).data
     }
 }
+
+fun <T: Any> Result<T>.isSuccess(): Boolean {
+    return this is Result.Success
+}
+
+fun <T: Any> Result<T>.get(): T {
+    return (this as Result.Success).data
+}

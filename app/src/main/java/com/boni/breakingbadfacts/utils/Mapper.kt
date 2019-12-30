@@ -1,5 +1,6 @@
 package com.boni.breakingbadfacts.utils
 
+import com.boni.breakingbadfacts.data.source.local.model.EpisodeEntity
 import com.boni.breakingbadfacts.data.source.remote.model.CharacterModel
 import com.boni.breakingbadfacts.data.source.remote.model.DeathModel
 import com.boni.breakingbadfacts.data.source.remote.model.EpisodeModel
@@ -53,6 +54,39 @@ fun EpisodeModel.toEpisode(): Episode {
 }
 
 fun List<EpisodeModel>.toEpisodes(): List<Episode> {
+    return map { it.toEpisode() }
+}
+
+fun EpisodeEntity.toEpisode(): Episode {
+    return Episode(
+        id = id,
+        title = title,
+        series = season.trim(),
+        airDate = airDate,
+        characters = characters,
+        episode = episode,
+        season = season.trim()
+    )
+}
+
+fun EpisodeModel.toEpisodeEntity(): EpisodeEntity {
+    return EpisodeEntity(
+        id = id ?: 0,
+        title = title.orEmpty(),
+        series = season.orEmpty().trim(),
+        airDate = airDate.orEmpty(),
+        characters = characters.orEmpty(),
+        episode = episode.orEmpty(),
+        season = season.orEmpty().trim()
+    )
+}
+
+fun List<EpisodeModel>.toEpisodesEntity(): List<EpisodeEntity> {
+    return map { it.toEpisodeEntity() }
+}
+
+@JvmName("episodeEntityToEpisode")
+fun List<EpisodeEntity>.toEpisodes(): List<Episode> {
     return map { it.toEpisode() }
 }
 
