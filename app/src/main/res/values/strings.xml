@@ -13,4 +13,6 @@
     <string name="cause">Cause</string>
     <string name="victim">Victim</string>
     <string name="executions">Executions</string>
+    <string name="more">More</string>
+    <string name="characters">Characters</string>
 </resources>

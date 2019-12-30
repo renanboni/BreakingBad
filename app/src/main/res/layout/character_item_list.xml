@@ -54,7 +54,7 @@
             android:fontFamily="@font/loew_medium"
             android:text="Alive"
             android:textColor="@color/green"
-            app:layout_constraintStart_toStartOf="@id/textView5"
-            app:layout_constraintTop_toBottomOf="@id/textView5" />
+            app:layout_constraintStart_toStartOf="@id/first_episode"
+            app:layout_constraintTop_toBottomOf="@id/first_episode" />
     </LinearLayout>
 </LinearLayout>

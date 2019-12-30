@@ -43,3 +43,4 @@ fun <T: Any> Result<T>.isSuccess(): Boolean {
 fun <T: Any> Result<T>.get(): T {
     return (this as Result.Success).data
 }
+
