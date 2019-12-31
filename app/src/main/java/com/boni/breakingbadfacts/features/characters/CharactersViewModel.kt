@@ -18,7 +18,7 @@ class CharactersViewModel(private val repository: BreakingBadRepository) : BaseV
     fun doGetAllCharacters() {
         load {
             repository.getAllCharacters()
-                .onSuccess { charactersState.postValue(CharactersViewState.CharactersState(it.toCharacters())) }
+                .onSuccess { charactersState.postValue(CharactersViewState.CharactersState(it)) }
                 .notifyError(errorLiveData)
         }
     }

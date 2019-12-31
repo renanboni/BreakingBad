@@ -18,7 +18,7 @@ class HomeViewModel(private val repository: BreakingBadRepository) : BaseViewMod
     fun doGetAllCharacters() {
         load {
             repository.getAllCharacters()
-                .onSuccess { charactersState.postValue(HomeViewState.CharactersState(it.toCharacters())) }
+                .onSuccess { charactersState.postValue(HomeViewState.CharactersState(it)) }
                 .notifyError(errorLiveData)
         }
     }
