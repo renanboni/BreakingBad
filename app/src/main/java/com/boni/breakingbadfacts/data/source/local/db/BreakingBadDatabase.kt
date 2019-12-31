@@ -10,7 +10,7 @@ import com.boni.breakingbadfacts.data.source.local.dao.BreakingBadDao
 import com.boni.breakingbadfacts.data.source.local.model.CharacterEntity
 import com.boni.breakingbadfacts.data.source.local.model.EpisodeEntity
 
-@Database(entities = [EpisodeEntity::class, CharacterEntity::class], version = 1)
+@Database(entities = [EpisodeEntity::class, CharacterEntity::class], version = 2)
 @TypeConverters(Converters::class)
 abstract class BreakingBadDatabase : RoomDatabase() {
 
