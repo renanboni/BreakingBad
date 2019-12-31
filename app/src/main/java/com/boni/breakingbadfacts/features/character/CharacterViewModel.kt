@@ -6,15 +6,13 @@ import com.boni.breakingbadfacts.base.Result
 import com.boni.breakingbadfacts.base.ViewState
 import com.boni.breakingbadfacts.base.getOrThrow
 import com.boni.breakingbadfacts.base.notifyError
-import com.boni.breakingbadfacts.base.onError
 import com.boni.breakingbadfacts.base.onSuccess
 import com.boni.breakingbadfacts.data.BreakingBadRepository
-import com.boni.breakingbadfacts.data.source.remote.model.CharacterModel
 import com.boni.breakingbadfacts.data.source.remote.model.DeathModel
 import com.boni.breakingbadfacts.data.source.remote.model.QuoteModel
+import com.boni.breakingbadfacts.features.model.Character
 import com.boni.breakingbadfacts.features.model.Death
 import com.boni.breakingbadfacts.features.model.Quote
-import com.boni.breakingbadfacts.utils.toCharacters
 import com.boni.breakingbadfacts.utils.toDeaths
 import com.boni.breakingbadfacts.utils.toQuotes
 import kotlinx.coroutines.async
@@ -46,12 +44,12 @@ class CharacterViewModel(private val repository: BreakingBadRepository) : BaseVi
 
     private fun onGetCharactersSuccess(
         deathListJob: Result<List<DeathModel>>,
-        characterListJob: Result<List<CharacterModel>>,
+        characterListJob: Result<List<Character>>,
         author: String
     ) {
         try {
             val deathList = deathListJob.getOrThrow().toDeaths().filter { it.responsible == author }
-            val characterList = characterListJob.getOrThrow().toCharacters()
+            val characterList = characterListJob.getOrThrow()
 
             deathList.forEach { death ->
                 characterList.find { character -> death.death == character.name }?.let {

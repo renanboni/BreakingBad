@@ -1,12 +1,12 @@
 package com.boni.breakingbadfacts
 
-import androidx.multidex.MultiDexApplication
+import android.app.Application
 import com.boni.breakingbadfacts.di.networkModule
 import com.boni.breakingbadfacts.di.repositoryModule
 import com.boni.breakingbadfacts.di.viewModelModule
 import org.koin.android.ext.koin.androidContext
 
-class BreakingBadApp : MultiDexApplication() {
+class BreakingBadApp : Application() {
     override fun onCreate() {
         super.onCreate()
         startKoin()
