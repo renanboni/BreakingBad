@@ -7,6 +7,8 @@ import com.boni.breakingbadfacts.data.source.local.BreakingBadLocalDataSourceImp
 import com.boni.breakingbadfacts.data.source.local.db.BreakingBadDatabase
 import com.boni.breakingbadfacts.data.source.remote.BreakingBadRemoteDataSource
 import com.boni.breakingbadfacts.data.source.remote.BreakingBadRemoteDataSourceImpl
+import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.Dispatchers
 import org.koin.android.ext.koin.androidContext
 import org.koin.dsl.module
 
@@ -15,4 +17,5 @@ val repositoryModule = module {
     single { BreakingBadDatabase.buildDatabase(androidContext()).breakingBadDao() }
     single<BreakingBadLocalDataSource>{ BreakingBadLocalDataSourceImpl(get()) }
     single<BreakingBadRemoteDataSource>{ BreakingBadRemoteDataSourceImpl(get()) }
+    single { Dispatchers.IO }
 }
