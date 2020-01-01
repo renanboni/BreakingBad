@@ -15,4 +15,6 @@
     <string name="executions">Executions</string>
     <string name="more">More</string>
     <string name="characters">Characters</string>
+    <string name="error">Error</string>
+    <string name="ok">Ok</string>
 </resources>

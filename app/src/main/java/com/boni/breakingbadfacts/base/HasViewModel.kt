@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
+import com.boni.breakingbadfacts.R
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
 interface HasViewModel<T : BaseViewModel> {
@@ -38,9 +39,9 @@ interface HasViewModel<T : BaseViewModel> {
 
     private fun renderErrorState(state: ErrorState) {
         MaterialAlertDialogBuilder(getActivity())
-            .setTitle("Error")
+            .setTitle(getActivity().getString(R.string.error))
             .setMessage(state.message)
-            .setPositiveButton("Ok", null)
+            .setPositiveButton(getActivity().getString(R.string.ok), null)
             .show()
     }
 
