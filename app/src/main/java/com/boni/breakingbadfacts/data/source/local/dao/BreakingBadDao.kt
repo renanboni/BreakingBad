@@ -6,6 +6,7 @@ import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.boni.breakingbadfacts.data.source.local.model.CharacterEntity
 import com.boni.breakingbadfacts.data.source.local.model.EpisodeEntity
+import com.boni.breakingbadfacts.data.source.local.model.QuoteEntity
 
 @Dao
 interface BreakingBadDao {
@@ -21,4 +22,10 @@ interface BreakingBadDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun saveCharacters(characterList: List<CharacterEntity>)
+
+    @Query("SELECT * FROM quote")
+    suspend fun getQuotes(): List<QuoteEntity>
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun saveQuotes(quoteList: List<QuoteEntity>)
 }
