@@ -2,6 +2,7 @@ package com.boni.breakingbadfacts.utils
 
 import com.boni.breakingbadfacts.data.source.local.model.CharacterEntity
 import com.boni.breakingbadfacts.data.source.local.model.EpisodeEntity
+import com.boni.breakingbadfacts.data.source.local.model.QuoteEntity
 import com.boni.breakingbadfacts.data.source.remote.model.CharacterModel
 import com.boni.breakingbadfacts.data.source.remote.model.DeathModel
 import com.boni.breakingbadfacts.data.source.remote.model.EpisodeModel
@@ -73,6 +74,19 @@ fun QuoteModel.toQuote(): Quote {
         author = author.orEmpty(),
         series = series.orEmpty()
     )
+}
+
+fun QuoteModel.toQuoteEntity(): QuoteEntity {
+    return QuoteEntity(
+        id = id?.toLong() ?: 0L,
+        quote = quote.orEmpty(),
+        author = author.orEmpty(),
+        series = series.orEmpty()
+    )
+}
+
+fun List<QuoteModel>.toQuotesEntity(): List<QuoteEntity> {
+    return map { it.toQuoteEntity() }
 }
 
 fun List<QuoteModel>.toQuotes(): List<Quote> {
