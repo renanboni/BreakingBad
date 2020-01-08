@@ -13,4 +13,5 @@ interface BreakingBadRepository {
     suspend fun getQuotes(): Result<List<QuoteModel>>
     suspend fun getEpisodes(): Result<List<Episode>>
     suspend fun getDeaths(): Result<List<DeathModel>>
+    suspend fun setEpisodeAsViewed(id: Int, viewed: Boolean): Result<Unit>
 }

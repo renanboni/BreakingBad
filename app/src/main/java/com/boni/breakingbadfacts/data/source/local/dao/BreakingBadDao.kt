@@ -1,9 +1,6 @@
 package com.boni.breakingbadfacts.data.source.local.dao
 
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
-import androidx.room.Query
+import androidx.room.*
 import com.boni.breakingbadfacts.data.source.local.model.CharacterEntity
 import com.boni.breakingbadfacts.data.source.local.model.EpisodeEntity
 import com.boni.breakingbadfacts.data.source.local.model.QuoteEntity
@@ -28,4 +25,7 @@ interface BreakingBadDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun saveQuotes(quoteList: List<QuoteEntity>)
+
+    @Query("UPDATE episode SET isChecked = :isChecked WHERE id = :id")
+    suspend fun setEpisodeAsViewed(id: Int, isChecked: Boolean)
 }

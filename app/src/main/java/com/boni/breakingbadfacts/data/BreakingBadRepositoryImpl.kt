@@ -7,7 +7,6 @@ import com.boni.breakingbadfacts.data.source.local.BreakingBadLocalDataSource
 import com.boni.breakingbadfacts.data.source.local.model.CharacterEntity
 import com.boni.breakingbadfacts.data.source.local.model.EpisodeEntity
 import com.boni.breakingbadfacts.data.source.remote.BreakingBadRemoteDataSource
-import com.boni.breakingbadfacts.data.source.remote.model.CharacterModel
 import com.boni.breakingbadfacts.data.source.remote.model.DeathModel
 import com.boni.breakingbadfacts.data.source.remote.model.QuoteModel
 import com.boni.breakingbadfacts.data.source.remote.services.BreakingBadService
@@ -127,5 +126,9 @@ class BreakingBadRepositoryImpl(
                 }
             }
         }
+    }
+
+    override suspend fun setEpisodeAsViewed(id: Int, viewed: Boolean): Result<Unit> {
+        return local.setEpisodeAsViewed(id, viewed)
     }
 }

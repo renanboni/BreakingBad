@@ -11,6 +11,10 @@ class BreakingBadLocalDataSourceImpl(
     private val breakingBadDao: BreakingBadDao
 ) : BreakingBadLocalDataSource, BaseRepository() {
 
+    override suspend fun setEpisodeAsViewed(id: Int, isViewed: Boolean) = runAsync {
+        breakingBadDao.setEpisodeAsViewed(id, isViewed)
+    }
+
     override suspend fun getEpisodes() = runAsync {
         breakingBadDao.getEpisodes()
     }

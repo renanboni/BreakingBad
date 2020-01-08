@@ -29,15 +29,15 @@ class CheckView @JvmOverloads constructor(
     init {
         LayoutInflater.from(context).inflate(R.layout.check_view, this)
 
-        setOnClickListener {
+       /* setOnClickListener {
             isChecked = !isChecked
             listener?.onChecked(isChecked)
 
             adjustColors()
-        }
+        }*/
     }
 
-    private fun adjustColors() {
+    fun setChecked(isChecked: Boolean) {
         checkedView.setVisible(isChecked)
 
         if (isChecked) {

@@ -17,4 +17,6 @@ interface BreakingBadLocalDataSource {
     suspend fun getQuotes(): Result<List<QuoteEntity>>
 
     suspend fun saveQuotes(quoteList: List<QuoteEntity>): Result<Unit>
+
+    suspend fun setEpisodeAsViewed(id: Int, isViewed: Boolean): Result<Unit>
 }

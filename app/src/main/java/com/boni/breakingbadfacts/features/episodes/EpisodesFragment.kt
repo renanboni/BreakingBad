@@ -11,7 +11,6 @@ import com.boni.breakingbadfacts.base.HasViewModel
 import com.boni.breakingbadfacts.base.LoadingState
 import com.boni.breakingbadfacts.base.ViewState
 import com.boni.breakingbadfacts.ui.VerticalStepper
-import com.boni.breakingbadfacts.utils.LineItemDecoration
 import com.boni.breakingbadfacts.utils.addSeparatorBetweenItems
 import com.boni.breakingbadfacts.utils.gone
 import kotlinx.android.synthetic.main.fragment_episodes.*
@@ -30,6 +29,8 @@ class EpisodesFragment :
         get() = episodesViewModel
 
     private val args: EpisodesFragmentArgs by navArgs()
+
+    private lateinit var adapter: EpisodesAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -55,13 +56,17 @@ class EpisodesFragment :
 
         when (viewState) {
             is EpisodesViewModel.EpisodesViewState.Episodes -> renderEpisodes(viewState)
+            is EpisodesViewModel.EpisodesViewState.EpisodeUpdated -> {
+                adapter.updateItem(viewState.episode)
+            }
             is LoadingState.Show -> shimmer.startShimmerAnimation()
             is LoadingState.Hide -> shimmer.stopShimmerAnimation()
         }
     }
 
     private fun renderEpisodes(viewState: EpisodesViewModel.EpisodesViewState.Episodes) {
-        episodes.adapter = EpisodesAdapter(viewState.episodes)
+        adapter = EpisodesAdapter(viewState.episodes) { viewModel.setEpisodeAsViewed(it) }
+        episodes.adapter = adapter
         episodes.addSeparatorBetweenItems()
         shimmer.gone()
     }

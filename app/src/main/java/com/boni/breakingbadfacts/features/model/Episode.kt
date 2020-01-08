@@ -7,5 +7,6 @@ class Episode(
     val airDate: String,
     val characters: List<String>,
     val episode: String,
-    val series: String
+    val series: String,
+    var isChecked: Boolean
 )

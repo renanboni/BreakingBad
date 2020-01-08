@@ -12,5 +12,6 @@ data class EpisodeEntity(
     @ColumnInfo val airDate: String,
     @ColumnInfo val characters: List<String>,
     @ColumnInfo val episode: String,
-    @ColumnInfo val series: String
+    @ColumnInfo val series: String,
+    @ColumnInfo val isChecked: Boolean
 )

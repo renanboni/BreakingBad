@@ -101,7 +101,8 @@ fun EpisodeModel.toEpisode(): Episode {
         airDate = airDate.orEmpty(),
         characters = characters.orEmpty(),
         episode = episode.orEmpty(),
-        season = season.orEmpty().trim()
+        season = season.orEmpty().trim(),
+        isChecked = false
     )
 }
 
@@ -117,7 +118,8 @@ fun EpisodeEntity.toEpisode(): Episode {
         airDate = airDate,
         characters = characters,
         episode = episode,
-        season = season.trim()
+        season = season.trim(),
+        isChecked = isChecked
     )
 }
 
@@ -129,7 +131,8 @@ fun EpisodeModel.toEpisodeEntity(): EpisodeEntity {
         airDate = airDate.orEmpty(),
         characters = characters.orEmpty(),
         episode = episode.orEmpty(),
-        season = season.orEmpty().trim()
+        season = season.orEmpty().trim(),
+        isChecked = false
     )
 }
 
