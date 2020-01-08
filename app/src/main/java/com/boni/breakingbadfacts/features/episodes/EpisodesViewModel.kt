@@ -28,10 +28,10 @@ class EpisodesViewModel(private val repository: BreakingBadRepository) : BaseVie
     }
 
     private fun onGetEpisodesSuccess(
-        it: List<Episode>,
+        episodeList: List<Episode>,
         season: Int
     ) {
-        val episodes = it.filter { it.season.toInt() == season }
+        val episodes = episodeList.filter { it.season.toInt() == season }
 
         episodesState.postValue(EpisodesViewState.Episodes(episodes))
     }
