@@ -52,7 +52,7 @@
 
     <fragment
         android:id="@+id/characterFragment"
-        android:name="com.boni.breakingbadfacts.features.character.CharacterFragment"
+        android:name="com.boni.character.ui.CharacterFragment"
         android:label="CharacterFragment"
         tools:layout="@layout/fragment_character">
 

@@ -12,7 +12,6 @@ import com.boni.breakingbadfacts.base.ViewState
 import com.boni.breakingbadfacts.ui.VerticalStepper
 import com.boni.breakingbadfacts.utils.addSeparatorBetweenItems
 import com.boni.breakingbadfacts.utils.gone
-import com.boni.episodes.EpisodesFragmentArgs
 import com.boni.episodes.R
 import com.boni.episodes.di.episodeModule
 import kotlinx.android.synthetic.main.fragment_episodes.*
@@ -34,7 +33,7 @@ class EpisodesFragment :
     private lateinit var adapter: EpisodesAdapter
 
     override val loadModules by lazy {
-        loadKoinModules(episodeModule)
+        listOf(episodeModule)
     }
 
     override fun onCreateView(

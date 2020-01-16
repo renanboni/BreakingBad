@@ -12,11 +12,12 @@ import com.boni.breakingbadfacts.base.ViewState
 import com.boni.breakingbadfacts.features.home.HomeFragmentDirections
 import kotlinx.android.synthetic.main.fragment_characters.*
 import org.koin.android.viewmodel.ext.android.viewModel
+import org.koin.core.module.Module
 
 class CharactersFragment : HasViewModel<CharactersViewModel>, BaseFragment() {
 
-    override val loadModules: Unit
-        get() = Unit
+    override val loadModules: List<Module>
+        get() = listOf()
 
     private val characterViewModel by viewModel<CharactersViewModel>()
 

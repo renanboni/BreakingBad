@@ -1,4 +1,4 @@
-package com.boni.breakingbadfacts.features.character
+package com.boni.character.ui
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,8 +6,8 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.boni.breakingbadfacts.R
 import com.boni.breakingbadfacts.features.model.Death
+import com.boni.character.R
 import com.bumptech.glide.Glide
 
 class DeathAdapter(private val deathList: List<Death>) :
@@ -29,7 +29,7 @@ class DeathAdapter(private val deathList: List<Death>) :
         holder.bind(deathList[position])
     }
 
-    inner class DeathViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
+    inner class DeathViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
 
         private val victim by lazy { view.findViewById<TextView>(R.id.victim) }
         private val cause by lazy { view.findViewById<TextView>(R.id.cause) }

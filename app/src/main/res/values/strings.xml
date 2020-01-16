@@ -18,4 +18,5 @@
     <string name="error">Error</string>
     <string name="ok">Ok</string>
     <string name="title_episodes">Episodes</string>
+    <string name="title_character">Character</string>
 </resources>

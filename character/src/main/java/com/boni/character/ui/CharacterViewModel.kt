@@ -1,4 +1,4 @@
-package com.boni.breakingbadfacts.features.character
+package com.boni.character.ui
 
 import com.boni.breakingbadfacts.base.BaseViewModel
 import com.boni.breakingbadfacts.base.ErrorState
@@ -57,7 +57,11 @@ class CharacterViewModel(private val repository: BreakingBadRepository) : BaseVi
                 }
             }
 
-            deathsState.postValue(CharacterState.Deaths(deathList))
+            deathsState.postValue(
+                CharacterState.Deaths(
+                    deathList
+                )
+            )
         } catch (e: Throwable) {
             errorLiveData.postValue(ErrorState(e.localizedMessage))
         }

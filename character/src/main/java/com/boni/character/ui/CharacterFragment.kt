@@ -1,4 +1,4 @@
-package com.boni.breakingbadfacts.features.character
+package com.boni.character.ui
 
 import android.annotation.SuppressLint
 import android.os.Bundle
@@ -7,24 +7,21 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import com.boni.breakingbadfacts.R
 import com.boni.breakingbadfacts.base.BaseFragment
 import com.boni.breakingbadfacts.base.HasViewModel
 import com.boni.breakingbadfacts.base.ViewState
 import com.boni.breakingbadfacts.features.model.Character
-import com.boni.breakingbadfacts.utils.LineItemDecoration
-import com.boni.breakingbadfacts.utils.MarginItemDecoration
 import com.boni.breakingbadfacts.utils.addMarginBetweenItems
 import com.boni.breakingbadfacts.utils.addSeparatorBetweenItems
 import com.boni.breakingbadfacts.utils.setVisible
+import com.boni.character.R
+import com.boni.character.di.characterModule
 import com.bumptech.glide.Glide
 import com.google.android.material.chip.Chip
 import kotlinx.android.synthetic.main.fragment_character.*
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class CharacterFragment : HasViewModel<CharacterViewModel>, BaseFragment() {
-    override val loadModules: Unit
-        get() = Unit
 
     private val characterViewModel by viewModel<CharacterViewModel>()
 
@@ -32,6 +29,10 @@ class CharacterFragment : HasViewModel<CharacterViewModel>, BaseFragment() {
         get() = characterViewModel
 
     private val args: CharacterFragmentArgs by navArgs()
+
+    override val loadModules by lazy {
+        listOf(characterModule)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -87,7 +88,9 @@ class CharacterFragment : HasViewModel<CharacterViewModel>, BaseFragment() {
             chip.isCheckable = false
             chip.setOnClickListener { _ ->
                 val action =
-                    CharacterFragmentDirections.actionCharacterFragmentToEpisodesFragment(it - 1)
+                    CharacterFragmentDirections.actionCharacterFragmentToEpisodesFragment(
+                        it - 1
+                    )
                 findNavController().navigate(action)
             }
             chips.addView(chip)

@@ -14,10 +14,11 @@ import com.boni.breakingbadfacts.utils.MarginItemDecoration
 import com.boni.breakingbadfacts.utils.gone
 import kotlinx.android.synthetic.main.fragment_home.*
 import org.koin.android.viewmodel.ext.android.viewModel
+import org.koin.core.module.Module
 
 class HomeFragment : HasViewModel<HomeViewModel>, BaseFragment() {
-    override val loadModules: Unit
-        get() = Unit
+    override val loadModules: List<Module>
+        get() = listOf()
 
     private val homeViewModel by viewModel<HomeViewModel>()
 

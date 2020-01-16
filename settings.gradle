@@ -1,2 +1,2 @@
-include ':app', ':episodes'
+include ':app', ':episodes', ':character'
 rootProject.name='BreakingBadFacts'
