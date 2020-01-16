@@ -1,4 +1,4 @@
-package com.boni.breakingbadfacts.features.episodes
+package com.boni.episodes.ui
 
 import com.boni.breakingbadfacts.base.*
 import com.boni.breakingbadfacts.data.BreakingBadRepository
@@ -22,7 +22,11 @@ class EpisodesViewModel(private val repository: BreakingBadRepository) : BaseVie
 
         launch {
             repository.setEpisodeAsViewed(episode.id, episode.isChecked)
-                .onSuccess { episodeState.postValue(EpisodesViewState.EpisodeUpdated(episode)) }
+                .onSuccess { episodeState.postValue(
+                    EpisodesViewState.EpisodeUpdated(
+                        episode
+                    )
+                ) }
                 .notifyError(errorLiveData)
         }
     }
@@ -33,7 +37,11 @@ class EpisodesViewModel(private val repository: BreakingBadRepository) : BaseVie
     ) {
         val episodes = episodeList.filter { it.season.toInt() == season }
 
-        episodesState.postValue(EpisodesViewState.Episodes(episodes))
+        episodesState.postValue(
+            EpisodesViewState.Episodes(
+                episodes
+            )
+        )
     }
 
     sealed class EpisodesViewState : ViewState {

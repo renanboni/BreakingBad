@@ -1,4 +1,4 @@
-package com.boni.breakingbadfacts.features.episodes
+package com.boni.episodes.ui
 
 import android.view.LayoutInflater
 import android.view.View

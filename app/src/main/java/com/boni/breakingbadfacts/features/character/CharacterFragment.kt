@@ -23,6 +23,8 @@ import kotlinx.android.synthetic.main.fragment_character.*
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class CharacterFragment : HasViewModel<CharacterViewModel>, BaseFragment() {
+    override val loadModules: Unit
+        get() = Unit
 
     private val characterViewModel by viewModel<CharacterViewModel>()
 

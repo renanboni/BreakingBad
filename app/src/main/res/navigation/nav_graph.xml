@@ -70,7 +70,7 @@
 
     <fragment
         android:id="@+id/episodesFragment"
-        android:name="com.boni.breakingbadfacts.features.episodes.EpisodesFragment"
+        android:name="com.boni.episodes.ui.EpisodesFragment"
         android:label="EpisodesFragment"
         tools:layout="@layout/fragment_episodes">
 

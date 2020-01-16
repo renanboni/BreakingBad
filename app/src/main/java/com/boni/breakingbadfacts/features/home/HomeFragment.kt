@@ -16,6 +16,8 @@ import kotlinx.android.synthetic.main.fragment_home.*
 import org.koin.android.viewmodel.ext.android.viewModel
 
 class HomeFragment : HasViewModel<HomeViewModel>, BaseFragment() {
+    override val loadModules: Unit
+        get() = Unit
 
     private val homeViewModel by viewModel<HomeViewModel>()
 

@@ -1,11 +1,10 @@
-package com.boni.breakingbadfacts.features.episodes
+package com.boni.episodes.ui
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.navArgs
-import com.boni.breakingbadfacts.R
 import com.boni.breakingbadfacts.base.BaseFragment
 import com.boni.breakingbadfacts.base.HasViewModel
 import com.boni.breakingbadfacts.base.LoadingState
@@ -13,10 +12,12 @@ import com.boni.breakingbadfacts.base.ViewState
 import com.boni.breakingbadfacts.ui.VerticalStepper
 import com.boni.breakingbadfacts.utils.addSeparatorBetweenItems
 import com.boni.breakingbadfacts.utils.gone
+import com.boni.episodes.EpisodesFragmentArgs
+import com.boni.episodes.R
+import com.boni.episodes.di.episodeModule
 import kotlinx.android.synthetic.main.fragment_episodes.*
-import kotlinx.android.synthetic.main.fragment_episodes.episodes
-import kotlinx.android.synthetic.main.fragment_episodes.shimmer
 import org.koin.android.viewmodel.ext.android.viewModel
+import org.koin.core.context.loadKoinModules
 
 class EpisodesFragment :
     HasViewModel<EpisodesViewModel>,
@@ -31,6 +32,10 @@ class EpisodesFragment :
     private val args: EpisodesFragmentArgs by navArgs()
 
     private lateinit var adapter: EpisodesAdapter
+
+    override val loadModules by lazy {
+        loadKoinModules(episodeModule)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -65,7 +70,9 @@ class EpisodesFragment :
     }
 
     private fun renderEpisodes(viewState: EpisodesViewModel.EpisodesViewState.Episodes) {
-        adapter = EpisodesAdapter(viewState.episodes) { viewModel.setEpisodeAsViewed(it) }
+        adapter = EpisodesAdapter(viewState.episodes) {
+            viewModel.setEpisodeAsViewed(it)
+        }
         episodes.adapter = adapter
         episodes.addSeparatorBetweenItems()
         shimmer.gone()

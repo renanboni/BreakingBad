@@ -15,6 +15,9 @@ import org.koin.android.viewmodel.ext.android.viewModel
 
 class CharactersFragment : HasViewModel<CharactersViewModel>, BaseFragment() {
 
+    override val loadModules: Unit
+        get() = Unit
+
     private val characterViewModel by viewModel<CharactersViewModel>()
 
     override val viewModel: CharactersViewModel

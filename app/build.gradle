@@ -3,7 +3,6 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: "androidx.navigation.safeargs.kotlin"
-apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion 29
@@ -42,6 +41,8 @@ android {
     androidExtensions {
         experimental = true
     }
+
+    dynamicFeatures = [":episodes"]
 }
 
 
@@ -76,8 +77,8 @@ dependencies {
     implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutinesVersion"
 
     // Koin
-    implementation "org.koin:koin-android:$koinVersion"
-    implementation "org.koin:koin-android-viewmodel:$koinVersion"
+    api "org.koin:koin-android:$koinVersion"
+    api "org.koin:koin-android-viewmodel:$koinVersion"
 
     implementation 'com.facebook.shimmer:shimmer:0.1.0@aar'
 
