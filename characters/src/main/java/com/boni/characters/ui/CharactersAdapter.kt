@@ -1,4 +1,4 @@
-package com.boni.breakingbadfacts.features.characters
+package com.boni.characters.ui
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,15 +6,14 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.boni.breakingbadfacts.R
 import com.boni.breakingbadfacts.features.model.Character
+import com.boni.characters.R
 import com.bumptech.glide.Glide
 
 class CharactersAdapter(
     private val characterList: List<Character>,
     private val listener: (Character) -> Unit
-) :
-    RecyclerView.Adapter<CharactersAdapter.CharacterViewHolder>() {
+) : RecyclerView.Adapter<CharactersAdapter.CharacterViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CharacterViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(

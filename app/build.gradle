@@ -42,7 +42,7 @@ android {
         experimental = true
     }
 
-    dynamicFeatures = [":episodes", ":character"]
+    dynamicFeatures = [":episodes", ":character", ":characters"]
 
 
 }
