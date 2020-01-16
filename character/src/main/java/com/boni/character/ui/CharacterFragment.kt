@@ -63,7 +63,7 @@ class CharacterFragment : HasViewModel<CharacterViewModel>, BaseFragment() {
 
     private fun renderExecutionList(viewState: CharacterViewModel.CharacterState.Deaths) {
         executions.adapter = DeathAdapter(viewState.deaths)
-        executions.addMarginBetweenItems()
+        executions.addMarginBetweenItems(8)
         executions.addSeparatorBetweenItems()
         executionLabel.setVisible(viewState.deaths.isNotEmpty())
     }

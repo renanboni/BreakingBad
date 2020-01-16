@@ -12,6 +12,7 @@
             <option value="$PROJECT_DIR$/character" />
             <option value="$PROJECT_DIR$/characters" />
             <option value="$PROJECT_DIR$/episodes" />
+            <option value="$PROJECT_DIR$/home" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

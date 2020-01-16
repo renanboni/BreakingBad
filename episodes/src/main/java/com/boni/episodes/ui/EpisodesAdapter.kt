@@ -5,9 +5,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.boni.breakingbadfacts.R
 import com.boni.breakingbadfacts.features.model.Episode
 import com.boni.breakingbadfacts.ui.CheckView
+import com.boni.episodes.R
 
 class EpisodesAdapter(
     private val episodes: List<Episode>,

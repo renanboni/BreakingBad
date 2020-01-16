@@ -1,19 +1,18 @@
-package com.boni.breakingbadfacts.features.home
+package com.boni.home.ui
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
-import com.boni.breakingbadfacts.R
 import com.boni.breakingbadfacts.features.model.Character
+import com.boni.home.R
 import com.bumptech.glide.Glide
 
 class HomeAdapter(
     private val characterList: List<Character>,
     private val listener: (Character) -> Unit
-) :
-    RecyclerView.Adapter<HomeAdapter.HomeViewHolder>() {
+) : RecyclerView.Adapter<HomeAdapter.HomeViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(

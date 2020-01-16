@@ -1,4 +1,4 @@
-package com.boni.breakingbadfacts.features.home
+package com.boni.home.ui
 
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.OnLifecycleEvent
@@ -8,7 +8,6 @@ import com.boni.breakingbadfacts.base.notifyError
 import com.boni.breakingbadfacts.base.onSuccess
 import com.boni.breakingbadfacts.data.BreakingBadRepository
 import com.boni.breakingbadfacts.features.model.Character
-import com.boni.breakingbadfacts.utils.toCharacters
 
 class HomeViewModel(private val repository: BreakingBadRepository) : BaseViewModel() {
 
@@ -18,7 +17,11 @@ class HomeViewModel(private val repository: BreakingBadRepository) : BaseViewMod
     fun doGetAllCharacters() {
         load {
             repository.getAllCharacters()
-                .onSuccess { charactersState.postValue(HomeViewState.CharactersState(it)) }
+                .onSuccess { charactersState.postValue(
+                    HomeViewState.CharactersState(
+                        it
+                    )
+                ) }
                 .notifyError(errorLiveData)
         }
     }
